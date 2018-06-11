@@ -1,0 +1,18 @@
+setEnvironmentVariable GRADLE_HOME ~/opt/gradle
+setEnvironmentVariable GRADLE_OPTS -Dorg.gradle.daemon=true
+setEnvironmentVariable IDEA ~/opt/idea/bin/idea.sh
+setEnvironmentVariable IDEA_JDK ~/opt/jdk
+setEnvironmentVariable JAVA_HOME ~/opt/jdk
+setEnvironmentVariable MAVEN_UPLOAD_PASSWORD ···
+setEnvironmentVariable MAVEN_UPLOAD_REPO_URL https://open-nexus.abacus.ch/repository/maven-releases/
+setEnvironmentVariable MAVEN_UPLOAD_USERNAME rinverardi
+setEnvironmentVariable MAVEN_UPLOAD_VERSION 1.4.0~abacus.0
+
+appendEnvironmentVariable PATH : "$GRADLE_HOME/bin"
+appendEnvironmentVariable PATH : "$JAVA_HOME/bin"
+
+checkDirectory $GRADLE_HOME
+checkDirectory $IDEA_JDK
+checkDirectory $JAVA_HOME
+
+checkFile $IDEA
