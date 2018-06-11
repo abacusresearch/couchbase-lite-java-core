@@ -126,6 +126,18 @@ public class AttachmentInternal {
             // I can't handle this myself; my caller will look it up from the getDigest
             if (digest == null)
                 throw new CouchbaseLiteException(Status.BAD_ATTACHMENT);
+
+            // @remo Upstream!
+            //
+            // See https://github.com/couchbase/couchbase-lite-android/issues/994
+
+            if (attachInfo.containsKey("revpos")) {
+                int revPos = ((Number) attachInfo.get("revpos")).intValue();
+                if (revPos <= 0) {
+                    throw new CouchbaseLiteException(Status.BAD_ATTACHMENT);
+                }
+                setRevpos(revPos);
+            }
         } else {
             throw new CouchbaseLiteException(Status.BAD_ATTACHMENT);
         }
